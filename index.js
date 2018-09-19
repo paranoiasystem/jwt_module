@@ -15,7 +15,7 @@ module.exports.generateUserToken = (userData) => {
             userId: userData._id,
             role: userData.role
         };
-        jwt.sign(payload, process.env.JWTSECRET, { algorithm: 'HS512', expiresIn: '1h', subject: userData.email }, (err, token) => {
+        jwt.sign(payload, process.env.JWTSECRET, { algorithm: 'HS512', expiresIn: '3d', subject: userData.email }, (err, token) => {
             if(err) reject(err);
             resolve(token);
         });
