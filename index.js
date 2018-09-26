@@ -38,9 +38,9 @@ module.exports.generateRefreshToken = (appTokenId) => {
         var payload = {
             appTokenId: appTokenId
         };
-        jwt.sign(payload, process.env.JWTSECRET,{ algorithm: 'HS512', subject: appData.subject }, (err, token) => {
-            if(err) reject(err);
+        jwt.sign(payload, process.env.JWTSECRET,{ algorithm: 'HS512', subject: 'refreshToken'}, (err, token) => {
+            if(err) reject({error: 'madonna quella puttsna'});
             resolve(token);
-        });     
+         });
     });
 }
