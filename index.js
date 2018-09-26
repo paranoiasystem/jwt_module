@@ -33,3 +33,14 @@ module.exports.generateAppToken = (appData) => {
         });
     });
 }
+module.exports.generateRefreshToken = (appTokenId) => {
+    return new Promise((resolve,reject) => {
+        var payload = {
+            appTokenId: appTokenId
+        };
+        jwt.sign(payload, process.env.JWTSECRET,{ algorithm: 'HS512', subject: appData.subject }, (err, token) => {
+            if(err) reject(err);
+            resolve(token);
+        });     
+    });
+}
