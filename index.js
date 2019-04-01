@@ -9,6 +9,15 @@ module.exports.verifyToken = (token) => {
     });
 };
 
+module.exports.verifyTokenRefresh = (token) => {
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, process.env.JWTSECRET, { ignoreExpiration: true }, (err, decode) => {
+            if(err) reject(err);
+            resolve(decode);
+        });
+    });
+};
+
 module.exports.generateUserToken = (userData) => {
     return new Promise((resolve, reject) => {
         var payload = {
